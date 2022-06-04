@@ -4,6 +4,9 @@
   <div class="todo-text">
     {{ todoItem.text }}
   </div>
+  <div class="todo-date">
+    {{ timestamp }}
+  </div>
 
   <div class="todo-controls-box" (click)="$event.stopPropagation()">
 
