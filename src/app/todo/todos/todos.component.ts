@@ -17,7 +17,11 @@ export class TodosComponent implements OnInit {
     private todoService: TodoService,
   ) {
     todoService.getTodos().subscribe(data=> {
-      this.todos = Object.values(data).reverse();
+      if(this.sort=='newToOld'){
+        this.todos = Object.values(data).reverse();
+      }else {
+        this.todos = Object.values(data);
+      }
     });
   }
 
@@ -26,12 +30,14 @@ export class TodosComponent implements OnInit {
   }
 
   public addToDoItem(event: any){
-    if(this.sort=='newToOld'){
-      this.todos.unshift(event);
-    }else {
-      this.todos.push(event);
-    }
-  }
+    this.todoService.getTodos().subscribe(data=> {
+      if(this.sort=='newToOld'){
+        this.todos = Object.values(data).reverse();
+      }else {
+        this.todos = Object.values(data);
+      }
+    });
+}
 
 
 }
