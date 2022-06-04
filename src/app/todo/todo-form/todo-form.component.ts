@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Todo } from '../../shared/models/todo.model';
 import { NgForm } from '@angular/forms';
 import { TodoService } from '../../shared/services/todo.service'
@@ -10,8 +10,9 @@ import { TodoService } from '../../shared/services/todo.service'
 })
 export class TodoFormComponent implements OnInit {
 
-  public submitted: boolean = false;
+  @Output('toDoItem') newItemEvent = new EventEmitter<Todo>();
 
+  public submitted: boolean = false;
   public formTitle: string; 
   
 
@@ -31,8 +32,11 @@ export class TodoFormComponent implements OnInit {
   }
 
   public newTodo(){
-    this.todoService.createTodo(new Todo(this.formTitle)).subscribe(data => {
-      console.log(data)
+    let toDo = new Todo(this.formTitle)
+    this.todoService.createTodo(toDo).subscribe(data => {
+      if (data == "Todo has been created."){
+        this.newItemEvent.emit(toDo);
+      }
     });
   }
 }

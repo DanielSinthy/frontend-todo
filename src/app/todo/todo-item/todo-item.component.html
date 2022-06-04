@@ -1,0 +1,14 @@
+<div
+  class="todo-item"
+>
+  <div class="todo-text">
+    {{ todoItem.text }}
+  </div>
+
+  <div class="todo-controls-box" (click)="$event.stopPropagation()">
+
+    <div class="todo-controll-button is-danger">
+      <i class="material-icons">delete</i>
+    </div>
+  </div>
+</div>

@@ -4,12 +4,18 @@
   
   <div class="container">
     <div class="add-todo-box">
-      <app-todo-form></app-todo-form>
+      <app-todo-form
+      (toDoItem)="addToDoItem($event)"
+      ></app-todo-form>
     </div>
   </div>
   
   <section class="section">
     <div class="container">
-
+      <app-todo-item 
+      *ngFor="let todoItem of todos"
+      [todoItem]="todoItem"
+      >
+      </app-todo-item>
     </div>
   </section>

@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 import { TodosComponent } from './todos/todos.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoItemComponent } from './todo-item/todo-item.component';
 
 
 
@@ -11,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     TodosComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    TodoItemComponent
   ],
   imports: [
     CommonModule,

@@ -22,4 +22,9 @@ export class TodoService {
     {responseType: 'text'});
   }
 
+  public getTodos(){
+    return this.http.get(this.apiUrl+'/todos/',
+    {responseType: 'json'})
+  }
+
 }

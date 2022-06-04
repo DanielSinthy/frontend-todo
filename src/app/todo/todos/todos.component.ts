@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../../shared/models/todo.model';
-import { NgForm } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { TodoService } from 'src/app/shared/services/todo.service';
 
 
 @Component({
@@ -10,13 +9,29 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
+  
+  public todos: Todo[];
+  public sort: string = 'newToOld';
 
-  constructor() {}
+  constructor(
+    private todoService: TodoService,
+  ) {
+    todoService.getTodos().subscribe(data=> {
+      this.todos = Object.values(data).reverse();
+    });
+  }
 
   ngOnInit(): void {
 
   }
 
+  public addToDoItem(event: any){
+    if(this.sort=='newToOld'){
+      this.todos.unshift(event);
+    }else {
+      this.todos.push(event);
+    }
+  }
 
 
 }
