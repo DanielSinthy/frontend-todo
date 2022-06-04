@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../../shared/models/todo.model';
 import { NgForm } from '@angular/forms';
+import { TodoService } from '../../shared/services/todo.service'
 
 @Component({
   selector: 'app-todo-form',
@@ -9,7 +10,14 @@ import { NgForm } from '@angular/forms';
 })
 export class TodoFormComponent implements OnInit {
 
-  constructor() {}
+  public submitted: boolean = false;
+
+  public formTitle: string; 
+  
+
+  constructor(
+    private todoService: TodoService
+  ) {}
 
   ngOnInit(): void {
   }
@@ -17,6 +25,14 @@ export class TodoFormComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     if (form.invalid) return alert('FORM INVALID');
 
+    this.submitted = true;
+
     form.reset();
+  }
+
+  public newTodo(){
+    this.todoService.createTodo(new Todo(this.formTitle)).subscribe(data => {
+      console.log(data)
+    });
   }
 }
