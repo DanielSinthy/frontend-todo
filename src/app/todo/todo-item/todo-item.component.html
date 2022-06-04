@@ -10,7 +10,7 @@
 
   <div class="todo-controls-box" (click)="$event.stopPropagation()">
 
-    <div class="todo-controll-button is-danger">
+    <div (click)="deleteToDo()" class="todo-controll-button is-danger">
       <i class="material-icons">delete</i>
     </div>
   </div>

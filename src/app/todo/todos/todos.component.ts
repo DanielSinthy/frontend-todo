@@ -31,14 +31,11 @@ export class TodosComponent implements OnInit {
 
   }
 
-  public addToDoItem(event: any){
-    this.todoService.getTodos().subscribe(data=> {
-      if(this.sort=='newToOld'){
-        this.todos = Object.values(data).reverse();
-      }else {
-        this.todos = Object.values(data);
-      }
-    });
+
+public updateListTodos(event: any){
+this.todoService.getTodos().subscribe(data=> {
+    this.todos = Object.values(data).reverse();
+  });
 }
 
 public filterByDate(){
@@ -48,7 +45,7 @@ public filterByDate(){
         return moment(item.timestamp).format("DD-MM-YY").toString() == moment(this.filterDate).format("DD-MM-YY").toString()
       });
     });
-}
+  }
 }
 
 

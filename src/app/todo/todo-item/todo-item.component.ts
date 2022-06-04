@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Todo } from '../../shared/models/todo.model';
 import { TodoService } from 'src/app/shared/services/todo.service';
 import * as moment from 'moment';
@@ -11,9 +11,13 @@ import * as moment from 'moment';
 })
 export class TodoItemComponent implements OnInit {
 
+  @Output('toDoItem') deleteItemEvent = new EventEmitter<Todo>();
+
   @Input() todoItem: any; 
 
-  constructor() {}
+  constructor(
+    private todoService: TodoService
+  ) {}
 
   ngOnInit(): void {
 
@@ -21,6 +25,12 @@ export class TodoItemComponent implements OnInit {
 
   get timestamp(){
     return moment(this.todoItem.timestamp).format("DD-MM-YYYY")
+  }
+
+  public deleteToDo(){
+    this.todoService.deleteTodo(this.todoItem).subscribe(data => {
+      this.deleteItemEvent.emit();
+    })
   }
 
 
