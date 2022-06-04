@@ -12,9 +12,20 @@
 
   <section class="section">
     <div class="container">
-      
+      <input
+          [(ngModel)]="filterDate"
+          required
+          name="filterDate"
+          class="input is-focused"
+          type="date"
+        />
+        <button type="button"  (click)="filterByDate()" class="button">
+          <i class="material-icons">add_task</i>
+          Filter
+        </button>
     </div>
-  </section>
+    <div class="container">
+
   
   <section class="section">
     <div class="container">
