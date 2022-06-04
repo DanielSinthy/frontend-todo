@@ -1,0 +1,22 @@
+<form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+    <h2 class="title is-6 has-text-left">New Task</h2>
+
+    <div class="field is-grouped" style="margin: 0">
+      <p class="control is-expanded">
+        <input
+          ngModel
+          required
+          name="text"
+          class="input is-focused"
+          type="text"
+          placeholder="for example: create a new angular app"
+        />
+      </p>
+      <p class="control">
+        <button type="submit" class="button add-button">
+          <i class="material-icons">add_task</i>
+          Add
+        </button>
+      </p>
+    </div>
+</form>
