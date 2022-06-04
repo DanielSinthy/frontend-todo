@@ -37,4 +37,16 @@ export class TodoService {
     return this.http.delete(this.apiUrl+'/todos/', options)
   }
 
+  public updateTodo(todo: Todo, updatedValue: string){
+    return this.http.put(this.apiUrl+'/todos/', 
+    {
+      "todo": {
+        "id": todo.id,
+        "text": updatedValue,
+        "timestamp": todo.timestamp
+      }
+    },
+    {responseType: 'json'});
+  }
+
 }

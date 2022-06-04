@@ -12,6 +12,7 @@ import * as moment from 'moment';
 export class TodoItemComponent implements OnInit {
 
   @Output('toDoItem') deleteItemEvent = new EventEmitter<Todo>();
+  @Output('editToDoItem') editItemEvent = new EventEmitter<Todo>();
 
   @Input() todoItem: any; 
 
@@ -31,6 +32,10 @@ export class TodoItemComponent implements OnInit {
     this.todoService.deleteTodo(this.todoItem).subscribe(data => {
       this.deleteItemEvent.emit();
     })
+  }
+
+  onEditClicked() {
+    this.editItemEvent.emit(this.todoItem);
   }
 
 

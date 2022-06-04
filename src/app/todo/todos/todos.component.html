@@ -5,7 +5,7 @@
   <div class="container">
     <div class="add-todo-box">
       <app-todo-form
-      (toDoItem)="updateListTodos($event)"
+      (toDoItem)="updateListTodosEmitter($event)"
       ></app-todo-form>
     </div>
   </div>
@@ -32,7 +32,8 @@
       <app-todo-item 
       *ngFor="let todoItem of todos"
       [todoItem]="todoItem"
-      (toDoItem)="updateListTodos($event)"
+      (toDoItem)="updateListTodosEmitter($event)"
+      (editToDoItem)="editTodo($event)"
       >
       </app-todo-item>
     </div>
